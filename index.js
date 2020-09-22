@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const config = require('config');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
