@@ -24,9 +24,9 @@ export default function App() {
                 token = '';
             }
 
-            const tokenResponse = await axios.post('http://localhost:3001/users/tokenIsValid', null, {headers: {'x-auth-token': token}});
+            const tokenResponse = await axios.post('/users/tokenIsValid', null, {headers: {'x-auth-token': token}});
             if(tokenResponse.data) {
-                const userResponse = await axios.get('http://localhost:3001/users/', {headers: {'x-auth-token': token}});
+                const userResponse = await axios.get('/users/', {headers: {'x-auth-token': token}});
                 setUserData({
                     token,
                     user: userResponse.data

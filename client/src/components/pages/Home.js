@@ -21,7 +21,7 @@ export default function Home() {
         e.preventDefault();
         try {
             const newItem = {title};
-            const addedItem = await axios.post('http://localhost:3001/todos/', newItem, {headers: {'x-auth-token': userData.token}});
+            const addedItem = await axios.post('/todos/', newItem, {headers: {'x-auth-token': userData.token}});
             
             if(todosData.todos !== undefined) {
                 setTodosData((prevState) => {
@@ -31,7 +31,7 @@ export default function Home() {
                 });
             }
             if(todosData.todos === undefined) {
-                const todoResponse = await axios.get('http://localhost:3001/todos/all', {headers: {'x-auth-token': userData.token}});
+                const todoResponse = await axios.get('/todos/all', {headers: {'x-auth-token': userData.token}});
                 if(todoResponse.data.length !== 0) {
                     setTodosData({
                         todos: todoResponse.data
@@ -48,15 +48,15 @@ export default function Home() {
     }
 
     const deleteItem = async (id) => {
-        await axios.delete(`http://localhost:3001/todos/${id}`, {headers: {'x-auth-token': userData.token}});
+        await axios.delete(`/todos/${id}`, {headers: {'x-auth-token': userData.token}});
         setTodosData({
                 todos: todosData.todos.filter(item => item._id !== id)
         })
     }
 
     const deleteUser = async () => {
-        await axios.post('http://localhost:3001/todos/delete', null, {headers: {'x-auth-token': userData.token}});
-        const deletedUser = await axios.delete('http://localhost:3001/users/delete', {headers: {'x-auth-token': userData.token}});
+        await axios.post('/todos/delete', null, {headers: {'x-auth-token': userData.token}});
+        const deletedUser = await axios.delete('/users/delete', {headers: {'x-auth-token': userData.token}});
         toggle();
         if(deletedUser) {
             setUserData({
@@ -77,7 +77,7 @@ export default function Home() {
 
         else {
             const loadTodos = async () => {
-                const todoResponse = await axios.get('http://localhost:3001/todos/all', {headers: {'x-auth-token': userData.token}});
+                const todoResponse = await axios.get('/todos/all', {headers: {'x-auth-token': userData.token}});
                 if(todoResponse.data.length !== 0) {
                     setTodosData({
                         todos: todoResponse.data
