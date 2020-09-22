@@ -19,9 +19,9 @@ export default function Register() {
         e.preventDefault();
         try {
             const newUser = {email, password, passwordCheck, displayName};
-            await axios.post('http://localhost:3001/users/register', newUser);
+            await axios.post('/users/register', newUser);
 
-            const loginResponse = await axios.post('http://localhost:3001/users/login', {email, password});
+            const loginResponse = await axios.post('/users/login', {email, password});
             setUserData({
                 token: loginResponse.data.token,
                 user: loginResponse.data.user
