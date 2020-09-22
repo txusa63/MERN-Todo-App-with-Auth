@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {useNewUrlParser: true, 
 app.use('/users', require('./routes/userRouter'));
 app.use('/todos', require('./routes/todoRouter'));
 
-if(process.env.NODE.ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 
 	app.get('*', (req, res) => {
